@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome!</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css"/>
+    <link th:href="@{/style.css}" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="main-container">
+        <div class="container">
+            <h1>WELCOME TO FREQUENCY PAGE</h1>
+            <p>
+            <div>Enter Your message:</div> <textarea type="text"  ></textarea>
+
+            </p>
+            <p>
+                <input type="submit" th:value="${action}" />
+            </p>
+<!--            <footer>Developed by JRzD</footer>-->
+        </div>
+
+    </div>
+    <footer>Developed by JRzD</footer>
+
+</body>
+</html>
