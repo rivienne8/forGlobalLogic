@@ -11,14 +11,23 @@
     <div class="main-container">
         <div class="container">
             <h1>WELCOME TO FREQUENCY PAGE</h1>
-            <p>
-            <div>Enter Your message:</div> <textarea type="text"  ></textarea>
+            <form action="#" th:action="@{/input}" th:object="${inputDTO}" method="post" class="container">
+<!--                <div>-->
+                    <label for="input">Enter Your message:</label>
+                    <textarea type="text" id="input" ></textarea>
 
-            </p>
-            <p>
-                <input type="submit" th:value="${action}" />
-            </p>
-<!--            <footer>Developed by JRzD</footer>-->
+<!--                </div>-->
+<!--                <div>-->
+                    <input type="submit" th:value="${action}"  />
+<!--                </div>-->
+            </form>
+            <div>
+                <div th:if="${resultDTO} != null">RESULT:</div>
+<!--                <div th:each="word : ${words}">-->
+<!--                    <div th:text="${word}">WORD: </div>-->
+<!--                </div>-->
+                <div th:if="${resultDTO.getData()} != null" th:text="${resultDTO}"></div>
+            </div>
         </div>
 
     </div>
