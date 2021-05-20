@@ -1,7 +1,6 @@
-package com.globalLogic.logic.main;
+package com.globalLogic.logic.main.model;
 
 import lombok.Data;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 @Component

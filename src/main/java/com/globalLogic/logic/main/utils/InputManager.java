@@ -1,6 +1,6 @@
 package com.globalLogic.logic.main.utils;
 
-import com.globalLogic.logic.main.Input;
+import com.globalLogic.logic.main.model.Input;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -52,6 +52,7 @@ public class InputManager {
     public String getStatistics(HashMap<Integer, StaticKeeper> statistics, int numberOfPatternLetters){
         return view.getMessageWithStatistics(statistics, numberOfPatternLetters);
     }
+
 
     public List<String> getPatternChars() {
         return patternChars;

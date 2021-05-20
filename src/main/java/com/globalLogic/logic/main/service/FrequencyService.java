@@ -1,7 +1,7 @@
 package com.globalLogic.logic.main.service;
 
-import com.globalLogic.logic.main.Input;
-import com.globalLogic.logic.main.InputDTO;
+import com.globalLogic.logic.main.model.Input;
+import com.globalLogic.logic.main.model.InputDTO;
 import com.globalLogic.logic.main.utils.FrequencyManager;
 import com.globalLogic.logic.main.utils.InputManager;
 import com.globalLogic.logic.main.utils.StaticKeeper;
@@ -14,12 +14,10 @@ import java.util.HashMap;
 public class FrequencyService {
 
     private final InputManager manager;
-//    private final FrequencyManager frequencyManager;
 
     @Autowired
     public FrequencyService(InputManager manager) {
         this.manager = manager;
-//        this.frequencyManager = frequencyManager;
     }
 
     public void add(InputDTO inputDTO){
@@ -40,6 +38,7 @@ public class FrequencyService {
 
         HashMap<Integer, StaticKeeper> detailedStatistics = frequencyManager.getStatistics();
         String result = manager.getStatistics(detailedStatistics, frequencyManager.getNumberOfPatternLettersInInput());
-        return result;
+        String overallResult = frequencyManager.getOverallPatternFrequency();
+        return result + "\n\nTOTAL FREQUENCY: " + overallResult;
     }
 }

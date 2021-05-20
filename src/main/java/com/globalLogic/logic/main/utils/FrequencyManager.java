@@ -1,8 +1,6 @@
 package com.globalLogic.logic.main.utils;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -43,10 +41,10 @@ public class FrequencyManager {
                 .count();
     }
 
-    public double getOverallPatternFrequency(){
+    public String getOverallPatternFrequency(){
         int numberOfPatternLettersInInput = getNumberOfPatternLettersInInput();
-
-        return numberOfPatternLettersInInput / (double) numberOfAllChars;
+        DecimalFormat df = new DecimalFormat("0.00");
+        return df.format(numberOfPatternLettersInInput / (double) numberOfAllChars);
     }
 
     public HashMap<Integer, StaticKeeper> getStatistics(){

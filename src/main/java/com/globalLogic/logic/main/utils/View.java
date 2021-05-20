@@ -27,7 +27,6 @@ public class View {
         sb.setLength(0);
 
         for (Map.Entry<Integer, StaticKeeper> entry : statistics.entrySet()){
-            sb.setLength(0);
             entry.getValue().getLettersOccured().forEach((letter,num) ->
                     sb.append("Letter: ").append(letter).append(", ")
                             .append(" in words of length: ")

@@ -1,4 +1,4 @@
-package com.globalLogic.logic.main;
+package com.globalLogic.logic.main.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
