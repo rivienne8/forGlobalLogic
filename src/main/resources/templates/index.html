@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome!</title>
-    <link rel="stylesheet" type="text/css" href="/static/style.css"/>
     <link th:href="@{/style.css}" rel="stylesheet" />
 
 </head>
@@ -11,22 +10,17 @@
     <div class="main-container">
         <div class="container">
             <h1>WELCOME TO FREQUENCY PAGE</h1>
-            <form action="#" th:action="@{/input}" th:object="${inputDTO}" method="post" class="container">
-<!--                <div>-->
-                    <label for="input">Enter Your message:</label>
-                    <textarea type="text" id="input" ></textarea>
+            <form action="#" th:action="@{/input}" th:object="${inputDTO}" method="POST" class="container">
 
-<!--                </div>-->
-<!--                <div>-->
+                    <label for="input">Enter Your message:</label>
+                    <textarea type="text" id="input" th:field="*{data}"></textarea>
                     <input type="submit" th:value="${action}"  />
-<!--                </div>-->
+
             </form>
             <div>
                 <div th:if="${resultDTO} != null">RESULT:</div>
-<!--                <div th:each="word : ${words}">-->
-<!--                    <div th:text="${word}">WORD: </div>-->
-<!--                </div>-->
-                <div th:if="${resultDTO.getData()} != null" th:text="${resultDTO}"></div>
+
+                <div th:if="${resultDTO.getData()} != null" th:text="${resultDTO.getData()}"></div>
             </div>
         </div>
 
