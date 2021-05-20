@@ -36,6 +36,9 @@ public class FrequencyManager {
     }
 
     public String getOverallPatternFrequency(){
+        if (numberOfAllChars == 0){
+            return null;
+        }
         int numberOfPatternLettersInInput = getNumberOfPatternLettersInInput();
         DecimalFormat df = new DecimalFormat("0.00");
         return df.format(numberOfPatternLettersInInput / (double) numberOfAllChars);

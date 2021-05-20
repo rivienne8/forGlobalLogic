@@ -38,7 +38,8 @@ public class FrequencyService {
 
         HashMap<Integer, StaticKeeper> detailedStatistics = frequencyManager.getStatistics();
         String result = manager.getStatistics(detailedStatistics, frequencyManager.getNumberOfPatternLettersInInput());
-        String overallResult = frequencyManager.getOverallPatternFrequency();
-        return result + "\n\nTOTAL FREQUENCY: " + overallResult;
+        String totalResult = frequencyManager.getOverallPatternFrequency();
+
+        return totalResult !=null && totalResult.length()>0 ? result + "\n\nTOTAL FREQUENCY: " + totalResult : result;
     }
 }
