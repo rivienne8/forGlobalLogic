@@ -6,20 +6,27 @@ import java.util.List;
 
 public class Input {
 
-    private String input;
-    private String regex = "/[^a-zA-Z ]/g";
+    private final String input;
+    private String inputWithoutSpecialChars;
 
     public Input(String input){
-        this.input = input;
+        this.input = input.toLowerCase();
     }
 
-    public List<String> getWordsWithoutSpecialCharacters(){
-        this.input = this.input.replace("[^a-zA-Z ]"," ");
-        System.out.println(this.input);
-        return new ArrayList<>(Arrays.asList(input.split(" ")));
+    public List<String> getWordsWithoutSpecialCharacters(String regex){
+        setInputWithoutSpecialChar(regex);
+        return new ArrayList<>(Arrays.asList(this.inputWithoutSpecialChars.split(" ")));
     }
 
+    private void setInputWithoutSpecialChar(String regex){
+        this.inputWithoutSpecialChars = this.input.replaceAll(regex,"");
+    }
 
+    public String retriveInputWithoutSpecialsCharsAndWhitespaces(){
+        return inputWithoutSpecialChars.replaceAll(" ", "");
+    }
 
-
+    public String getInput() {
+        return input;
+    }
 }

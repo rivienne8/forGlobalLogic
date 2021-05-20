@@ -22,13 +22,13 @@ public class AppController {
 
     @GetMapping(value = "/")
     public String getIndexPage(Model model){
-//        model.addAttribute("words", manaserger.getResult());
         model.addAttribute("action", "GET RESULT");
         InputDTO inputDTO = new InputDTO();
-//        if (service.getResult() != null) {
             InputDTO resultDTO = new InputDTO();
-            resultDTO.setData(service.getResult());
-//        }
+            if (service.getResult() != null && service.getResult().getInput() != null){
+                String statistics = service.getStatistics();
+                resultDTO.setData(statistics);
+            }
         model.addAttribute("inputDTO", inputDTO);
         model.addAttribute("resultDTO", resultDTO);
 

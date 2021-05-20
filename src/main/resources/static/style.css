@@ -61,3 +61,7 @@ input {
     border-radius: 2%;
     /*flex: 1;*/
 }
+
+.result {
+    display: inline-flex;
+}
