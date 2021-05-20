@@ -1,35 +1,23 @@
 package com.globalLogic.logic.main.utils;
 
 import java.text.DecimalFormat;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class View {
 
-    public void display(String message){
-        System.out.println(message);
-    }
-
     public String getMessageWithStatistics(HashMap<Integer,StaticKeeper> statistics, int numberOfPatternLetters) {
-//        List<Entry<Integer,StaticKeeper>> list = new LinkedList<Map.Entry<Integer,StaticKeeper>>(statistics.entrySet());
-//        Collections.sort(list, new Comparator<Entry<Integer,StaticKeeper>>()) {
-//            public int compare(Map.Entry<Integer,StaticKeeper> o1, Map.Entry<Integer,StaticKeeper> o2){
-//                return (o1.getValue().getOccurence()).compareTo(o2.getValue().getOccurence());
-//            }
-//        });
-//        LinkedHashMap<Integer,StaticKeeper> statisticsSorted = statistics.entrySet().stream()
-//                .sorted(Map.Entry.comparingByValue(Comparator.comparingInt()))
-//                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1,e2) -> e1, LinkedHashMap::new));
 
+        LinkedHashMap<Integer, StaticKeeper> statisticsSorted = getSortedStatistics(statistics);
 
         StringBuilder sb = new StringBuilder();
         sb.setLength(0);
 
-        for (Map.Entry<Integer, StaticKeeper> entry : statistics.entrySet()){
-            entry.getValue().getLettersOccured().forEach((letter,num) ->
+        for (Map.Entry<Integer, StaticKeeper> entry : statisticsSorted.entrySet()){
+            entry.getValue().getLettersOccurred().forEach((letter,num) ->
                     sb.append("Letter: ").append(letter).append(", ")
-                            .append(" in words of length: ")
+                            .append(" in word of length: ")
                             .append(entry.getKey())
                             .append(", Statistics: ")
                             .append(getFrequency(num, numberOfPatternLetters))
@@ -38,20 +26,27 @@ public class View {
                             .append("/")
                             .append(numberOfPatternLetters)
                             .append("\n"));
-            if (entry.getValue().getLettersOccured().size() > 1){
+            if (entry.getValue().getLettersOccurred().size() > 1){
                 sb.append("Letters: ");
-                entry.getValue().getLettersOccured().forEach((letter,num) -> sb.append(letter).append(", "));
+                entry.getValue().getLettersOccurred().forEach((letter,num) -> sb.append(letter).append(", "));
                 sb.append(" in words of length: ")
                         .append(entry.getKey())
                         .append(", Statistics: ")
-                        .append(getFrequency(entry.getValue().getOccurence(), numberOfPatternLetters))
+                        .append(getFrequency(entry.getValue().getOccurrence(), numberOfPatternLetters))
                         .append(", Letter/All letters indicator: ")
-                        .append(entry.getValue().getOccurence())
+                        .append(entry.getValue().getOccurrence())
                         .append("/")
                         .append(numberOfPatternLetters)
                         .append("\n");}
         }
         return sb.toString();
+    }
+
+    private LinkedHashMap<Integer, StaticKeeper> getSortedStatistics(HashMap<Integer, StaticKeeper> statistics) {
+        LinkedHashMap<Integer,StaticKeeper> statisticsSorted = statistics.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.comparingInt(StaticKeeper::getOccurrence)))
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+        return statisticsSorted;
     }
 
     private String getFrequency(int numberOccuredLetters, int numberOfPatternLetters){

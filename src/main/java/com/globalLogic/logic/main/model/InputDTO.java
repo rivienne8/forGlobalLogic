@@ -8,6 +8,4 @@ import org.springframework.stereotype.Component;
 public class InputDTO {
 
     private String data;
-
-
 }

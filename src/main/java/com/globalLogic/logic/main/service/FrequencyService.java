@@ -24,7 +24,7 @@ public class FrequencyService {
         manager.add(inputDTO.getData());
     }
 
-    public Input getResult(){
+    public Input getInput(){
         return manager.getInput();
     }
 

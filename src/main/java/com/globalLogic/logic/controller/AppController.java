@@ -26,7 +26,7 @@ public class AppController {
         model.addAttribute("action", "GET RESULT");
         InputDTO inputDTO = new InputDTO();
             InputDTO resultDTO = new InputDTO();
-            if (service.getResult() != null && service.getResult().getInput() != null){
+            if (service.getInput() != null && service.getInput().getInput() != null){
                 String statistics = service.getStatistics();
                 resultDTO.setData(statistics);
             }

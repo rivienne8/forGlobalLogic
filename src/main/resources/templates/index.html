@@ -12,20 +12,20 @@
             <h1>WELCOME TO FREQUENCY PAGE</h1>
             <form action="#" th:action="@{/input}" th:object="${inputDTO}" method="POST" class="container">
 
-                    <label for="input">Enter Your message:</label>
-                    <textarea type="text" id="input" th:field="*{data}"></textarea>
-                    <input type="submit" th:value="${action}"  />
+                <label for="input">Enter Your message:</label>
+                <textarea type="text" id="input" th:field="*{data}"></textarea>
+                <input type="submit" th:value="${action}"  />
 
             </form>
             <div>
                 <div th:if="${resultDTO} != null">RESULT:</div>
 
-                <div class="result" th:if="${resultDTO.getData()} != null" th:text="${resultDTO.getData()}"></div>
+                <div class="result" style="white-space: pre-line" th:if="${resultDTO.getData()} != null" th:text="${resultDTO.getData()}"></div>
             </div>
         </div>
 
     </div>
-    <footer>Developed by JRzD</footer>
+    <footer>Developed by: Joanna Rzeszótko-Doniec</footer>
 
 </body>
 </html>

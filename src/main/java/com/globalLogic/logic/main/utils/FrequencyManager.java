@@ -9,7 +9,6 @@ public class FrequencyManager {
     private List<String> patternCharacters;
     private List<String> wordsCharacters;
     private List<String> words;
-    private int numberOfAllWords;
     private int numberOfAllChars;
     private Map<String,Integer> frequencyMap;
 
@@ -20,7 +19,6 @@ public class FrequencyManager {
         this.words = words;
         this.wordsCharacters = wordsCharacters;
         setNumberOfAllChars();
-        setNumberOfAllWords();
         frequencyMap = new HashMap<>();
     }
 
@@ -28,10 +26,6 @@ public class FrequencyManager {
         this.numberOfAllChars = this.words.stream()
                 .map(String::length)
                 .reduce(0, Integer::sum);
-    }
-
-    public void setNumberOfAllWords() {
-        this.numberOfAllWords = words.size();
     }
 
     public int getNumberOfPatternLettersInInput(){
@@ -49,13 +43,9 @@ public class FrequencyManager {
 
     public HashMap<Integer, StaticKeeper> getStatistics(){
 
-        List<String> sortedWords = this.words.stream()
-                .sorted(Comparator.comparingInt(String::length))
-                .collect(Collectors.toList());
-
         HashMap<Integer, StaticKeeper> statistics = new HashMap<>();
 
-        for (String word : sortedWords){
+        for (String word : words){
             if (patternCharacters.stream().anyMatch(word::contains)){
                 StaticKeeper keeper;
                 if (!statistics.containsKey(word.length())){
@@ -75,12 +65,12 @@ public class FrequencyManager {
     private void updateKeeper(String word, StaticKeeper keeper) {
         List<String> letters = getMatchedLetters(word);
         for (String letter : letters){
-            if (!keeper.getLettersOccured().containsKey(letter)){
-                keeper.getLettersOccured().put(letter, 1);
+            if (!keeper.getLettersOccurred().containsKey(letter)){
+                keeper.getLettersOccurred().put(letter, 1);
             } else {
-                keeper.getLettersOccured().put(letter, keeper.getLettersOccured().get(letter) +1 );
+                keeper.getLettersOccurred().put(letter, keeper.getLettersOccurred().get(letter) +1 );
             }
-            keeper.setOccurence(keeper.getOccurence()+1);
+            keeper.setOccurrence(keeper.getOccurrence()+1);
         }
     }
 
